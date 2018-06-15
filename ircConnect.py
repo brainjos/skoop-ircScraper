@@ -33,5 +33,7 @@ class IRC:
             self.ircsock.send(bytes("PONG :pingis\n", "UTF-8"))
             return self.rec_message() #wait for next non-ping incoming message
 
-    def send_message(self, message, target=self.channel):
+    def send_message(self, message, target=None):
+        if target is None:
+            target = self.channel
         self.ircsock.send(bytes("PRIVMSG " + target + " :" + message + "\n", "UTF-8"))
