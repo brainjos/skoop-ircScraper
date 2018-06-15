@@ -74,13 +74,15 @@ while 1:
     name, message = irc.rec_message()
     #message from troy or eby -- add message to all current chains
     if name in helpers:
-        print('message from helpers! adding to all chains.')
-        for c in chains:
-            c.add_message(name, message)
+        if all(bword not in message for bword in blocklist):
+            print('message from helpers! adding to all chains.')
+            for c in chains:
+                c.add_message(name, message)
     #current chain exists from given user -- add message to chain
     elif name in chains:
-        print('new comment from origin of a chain, adding message.')
-        chains[name].add_message(name, message)
+        if all(bword not in message for bword in blocklist):
+            print('new comment from origin of a chain, adding message.')
+            chains[name].add_message(name, message)
     #detect new question, if reference to keywords
     else:
         if any(kword in message for kword in keywords):
