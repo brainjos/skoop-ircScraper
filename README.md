@@ -11,8 +11,8 @@ Clone respository. Touch `config.py` and format as such:
 server = "irc.example.net"
 channel = "#channel"
 botnick = "skoop"
-chain_duration = 3600 
-archive_check_delay = 600
+chain_duration = 3600 #seconds before message chain considered 'closed' i.e. ready to archive 
+archive_check_delay = 600 #time between 'checks' -- where all currently open chains are archived if closed
 keywords = ["network", "helpername1"]
 helpers = ["helpername1", "helpername2", "helpername3"]
 blockwords = ["channelSpecificCommand"]
